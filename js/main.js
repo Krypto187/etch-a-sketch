@@ -1,7 +1,8 @@
 const grid = document.querySelector(".grid");
 
-function squareGrid() {
-    for (let i = 0; i < 256; i++) {
+function squareGrid(x) {
+    let amount = x * 4;
+    for (let i = 0; i < amount; i++) {
         const square = document.createElement("div");
         square.classList.add("square");
         grid.appendChild(square);
@@ -9,7 +10,7 @@ function squareGrid() {
 }
 
 
-squareGrid();
+squareGrid(64);
 
 const square = document.querySelector("div");
 square.addEventListener("mouseover", function(e) {
@@ -17,11 +18,9 @@ square.addEventListener("mouseover", function(e) {
 });
 
 function clearGrid() {
-    const allSquares = document.querySelectorAll("div");
+    const allSquares = document.querySelectorAll(".color,.square");
     allSquares.forEach(element => {
-        if (element.classList == "color") {
-            element.classList.replace("color", "square");
-        }
+        element.remove();
     });
 }
 
@@ -30,6 +29,10 @@ btn.classList.add("btn")
 btn.textContent = "Reset"
 btn.addEventListener("click", function(e) {
     clearGrid();
+    let amountSquare = prompt("How many squares you want?")
+    squareGrid(amountSquare);
 })
 
 document.body.insertBefore(btn, grid);
+
+/* */
